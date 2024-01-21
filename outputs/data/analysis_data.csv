@@ -1,0 +1,28 @@
+scenario,Total_income,Average_Monthly_Rent_expense,Food_expense,Total_expenditure,Funds_remaining,percent_income_rent,percent_income_requiredforhealthfood,category
+S1,2730.00,254.00,1141.00,1770.00,960.00,0.09,0.42,with subsidies
+S2,3952.00,735.00,1141.00,2814.00,1138.00,0.19,0.29,with subsidies
+S3,9323.00,1961.00,1141.00,4555.00,4768.00,0.21,0.12,with subsidies
+S4,2503.00,226.00,855.00,1333.00,1170.00,0.09,0.34,with subsidies
+S5,839.00,85.00,392.00,600.00,239.00,0.10,0.47,with subsidies
+S6,1286.00,109.00,392.00,624.00,662.00,0.08,0.30,with subsidies
+S7,1870.00,510.00,279.00,917.00,953.00,0.27,0.15,with subsidies
+S8,2301.00,199.00,650.00,1567.00,734.00,0.09,0.28,with subsidies
+S9,2538.00,735.00,323.00,1652.00,886.00,0.29,0.13,with subsidies
+S1,2764.00,1961.00,1141.00,4150.00,-1386.00,0.71,0.41,"Without Subsidies, Average Rent"
+S2,3977.00,1961.00,1141.00,4588.00,-611.00,0.49,0.29,"Without Subsidies, Average Rent"
+S3,9323.00,1961.00,1141.00,4588.00,4735.00,0.21,0.12,"Without Subsidies, Average Rent"
+S4,2532.00,1703.00,855.00,3450.00,-918.00,0.67,0.34,"Without Subsidies, Average Rent"
+S5,865.00,1225.00,392.00,1773.00,-908.00,1.42,0.45,"Without Subsidies, Average Rent"
+S6,1313.00,1446.00,392.00,1994.00,-681.00,1.10,0.30,"Without Subsidies, Average Rent"
+S7,1889.00,1446.00,279.00,1853.00,36.00,0.77,0.15,"Without Subsidies, Average Rent"
+S8,2326.00,1446.00,650.00,2846.00,-520.00,0.62,0.28,"Without Subsidies, Average Rent"
+S9,2548.00,1225.00,323.00,2142.00,406.00,0.48,0.13,"Without Subsidies, Average Rent"
+S1,2791.00,3818.00,1141.00,6007.00,-3216.00,1.37,0.41,"Without Subsidies, Market Rent"
+S2,4004.00,3818.00,1141.00,6445.00,-2441.00,0.95,0.28,"Without Subsidies, Market Rent"
+S3,9323.00,3818.00,1141.00,6445.00,2878.00,0.41,0.12,"Without Subsidies, Market Rent"
+S4,2556.00,2885.00,855.00,4632.00,-2076.00,1.13,0.33,"Without Subsidies, Market Rent"
+S5,875.00,1707.00,392.00,2255.00,-1380.00,1.95,0.45,"Without Subsidies, Market Rent"
+S6,1325.00,2082.00,392.00,2630.00,-1305.00,1.57,0.30,"Without Subsidies, Market Rent"
+S7,1900.00,2082.00,279.00,2489.00,-589.00,1.10,0.15,"Without Subsidies, Market Rent"
+S8,2339.00,2082.00,650.00,3482.00,-1143.00,0.89,0.28,"Without Subsidies, Market Rent"
+S9,2558.00,1707.00,323.00,2624.00,-66.00,0.67,0.13,"Without Subsidies, Market Rent"

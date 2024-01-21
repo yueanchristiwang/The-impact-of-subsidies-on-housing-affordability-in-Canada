@@ -1,0 +1,156 @@
+---
+title: "The impact of subsidies on housing affordability in Canada"
+author: 
+  - Yuean Wang
+thanks: "Code and data are available at: LINK."
+date: today
+date-format: long
+abstract: "In 2018, the government of Canada introduced a ten-year project aimed at creating affordable housing and consequently improve the quality of life for   the people especially those in low socio-economic classes. This came at a time where housing prices is seeing a tremendous hike, mostly due the overall rise in cost of production but also due to the shortage caused by increasing demand. Part of the government program includes subsidies to tenants to reduce expenditures on rent without necessarily reducing the income to landlords. This paper examines the impact subsidies, and concludes that the reduction in expenditure is not only significant but also very important to low income earners"
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+library(opendatatoronto)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(scales)
+library(tinytex)
+data <- read_csv("analysis_data.csv")
+
+```
+
+# Introduction
+
+Globally, the cost of housing has been rising over the past few decades partly due to the rise in cost of construction and partly due inflation.  The exponential increase in the world population has also significantly increased the demand for houses and other basic necessities such as health food leading, escalating their price even higher.  Defiantly, income levels especially among the lower class, who also happen to be the majority, has not improved to match this increasing cost of living and hence causing a strain on most households.  Canada, has not been an exception to the rise in cost of living, and with relatively stagnant income levels, a considerably significant percentage of Canadians cannot afford housing and other basic necessities.  [@FARHAN], suggests that the current market prices could be a bubble as housing prices are relatively higher than their current value, mostly due to the current supply not being able to satisfy the demand.  [@FARHAN], notes that there has been a decline in per-capita house supply in the past decade, with the scarcity being worse in the urban centers especially in Ontario. 
+
+Housing and income are part of the socioeconomic factors that have a significant impact on the quality of life.  According to [@Woodhall], affordability of housing as well as well as the quality of housing facility can critically reduce health inequities. Technically, lack of housing negatively affects mental health, physical health and consequently increase the need for healthcare services. given that the cost of health care services has also been increasing, the strain on income increasing further placing the household in an unbreakable poverty and deteriorating quality of life cycle.
+
+The government of Canada   actively participates in ensuring housing affordability, categorizing individual with housing need as those spending more than 30% of their gross income on house related costs such as rent and mortgage. Established in 2018, the National Housing strategy (NHS), aims at ensuring that each Canadian has access to affordable and quality housing, complying with the UN recognition of housing being a basic human right[@Ramage].  The strategy is non-discriminating and applies minor tactics among them rent subsidies, most of which are supply-side solution. With this strategy, the government has taken a broad move prioritizing its social responsibility over financial goals. Worth noting, house shortages not only increase house prices, but also increase bank revenue through facilitating mortgages, which indirectly translates to increased tax revenue collection. By alleviating the shortage, the reduces tax revenue collection, increases government spending via subsidies, which basically represents a transfer of the strain from low income earning households to the government.  This paper investigates the impact of government subsidies on the housing affordability. The paper assumes that the inability to afford basic needs is detrimental to the quality of life of an household.  With the focus being low income earners, the study will exclude home owners and only focus on renters.  [@Farhan], states that the number of renters has doubled over last decade which is accompanied by a decrease in the number of owners.   Based on this trend, a successful program on rent subsidies has a wider reach.
+
+# Data {#sec-data}
+
+## Source
+
+To gain a better understanding the relationship between government subsidies, income, and affordability of other basic needs, data was obtained from the open Data Toronto portal via the use of R library opendatatoronto [@Gelfand].  Specifically, the chosen dataset offers a description of food affordability based on the nutritious Food Basket (NFP) costing tool, in three different set-ups; with subsidies, without subsidies plus average rent, and without subsidies plus market rent.  In this dataset, subsidies collectively include rent subsidies, childcare subsidies, fair pass among others that significantly reduce the household’s general expenditure.   For the cases without subsidies, two rental cost measurements were taken; one from Canadian Mortgage and Housing Corporation (CMHC) refereed to as average rent, and the other from Toronto Regional Real Estate Board (For June 2022), referred to as the market rent. 
+
+Households were grouped into 9 different scenarios based on their socio and economic status as below;
+
+-   Scenario 1: Family of four; Ontario works
+
+-   Scenario 2: Family of Four; Full time minimum wage earner
+
+-   Scenario 3: Family of Four; Median Income
+
+-   Scenario 4: Single Parent with 2 children; Ontario works
+
+-   Scenario 5: One-person household; Ontario works.
+
+-   Scenario 6: One Person Household; Ontario Disability Support program
+
+-   Scenario 7: One Person Household; Old age guaranteed annual income supplement
+
+-   Scenario 8: Married Couple Ontario Disability Support Program
+
+-   Scenario 9: Single Person Household; Full time Minimum wage earner.
+
+## Features
+
+The main variable was the proportion of income used for rent in the three   setups. The assumption is that if a high proportion of income used on rent, the household strains to achieve other basic needs.  Another measure of social well being was funds remaining after basic expenses are deducted from income, depicted in this dataset as the variable funds remaining.  Other variables of interest were:
+
+-   Income levels: an aggregation of all sources of income for a particular household scenario
+
+-   Total expenditure:  all the money spends on basic needs
+
+-   Percentage of income required to purchase healthy food
+
+## Methodology and results
+
+The data cleaning and analysis was done using R (R core team), applying the libraries dplyr [@Wickham), tidyverse [@Wickham], Knitr [@Xie2014].  The raw data contained three data-sets, one for each set up, and income scenarios as column heads, and several variables as rows. To start with, unwanted rows (variables were removed), the data was then transposed to have variables as column heads and the three data sets were merged into one and then an additional variable depicting set up was added.
+
+Using ggplot2 [@Wickham], several bar charts were created on the variables to observe their relationship based on the three social set ups. To get a glimpse of the data-set the income levels and total expenditures were graphed as in figure 1 and 2 below;.
+
+```{r}
+#| label: fig_1
+#| fig-cap: total income
+#| echo: false
+ggplot(data, aes(fill=category, Total_income, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+
+#| label: fig_2
+#| fig-cap: total expenditure
+#| echo: false
+ggplot(data, aes(fill=category, Total_expenditure, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+```
+
+TScenario 3 had the highest total income, while scenario 5 had the lowest. The disparity between scenario 3, which is the median income and the other scenario is quite huge as displayed in figure 1. Based on figure 1, total income did not vary across the different set, which was expected as subsidies (or lack thereof) are not expected to have an impact on income levels.   When it comes total expenditure, the setup had a significant impact. Across all income scenarios expenditure without subsidies at market rates was the highest and lowest when subsidies were availed.    Without subsidies and at market rate, the total expenditure in scenario 2 matched that   of income scenario 3, with that of scenario one coming too close.  Comparing figure 1 and 2, one can note that total income   has a little impact on total expenditure, as expenditure is highly guided by the type of family. For instance, scenario 1,2 and 3 consist of family of four and hence their similarity in expenditure, while scenarios 5,6,7 and 9 consisting of a single person also have similar expenditure patterns in all the three setups.  To further explore the patterns in expenditures, two expenditure components were observed; expenditure on food and expenditure on rent as shown in figure 3 and 4 respectively.
+
+```{r}
+#| label: fig_3
+#| fig-cap: Food_expense
+#| echo: false
+ggplot(data, aes(fill=category, Food_expense, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+
+#| label: fig_4
+#| fig-cap: total expenditure
+#| echo: false
+ggplot(data, aes(fill=category, Average_Monthly_Rent_expense, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+```
+
+The expenditure on food was standardized and the data sets used the average monthly expenditure assuming that the families consumed health foods, and hence the homogeneity in figure 3 for similar household set ups.  Without subsidies, scenario 1,2 and 3 spend the same on rent, scenario 5 and 9 spend the same and so a scenario 7,6 and 8. Figure 4 shows that, rent reduces significantly for the needy cases when subsidies are included.   These changes can be seen in the residual income (funds remaining after expenses are paid) as shown in figure 5.
+
+```{r}
+#| label: fig_5
+#| fig-cap: Food_expense
+#| echo: false
+ggplot(data, aes(fill=category, Funds_remaining, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+```
+
+ Figure 5 shows that when subsidies are included, all the scenarios incomes have a positive income residual, whilst without subsidies only scenario 3 has a positive income residual at market rent. Basically, a negative income residual is detrimental to the quality of life as it implies that the household can afford all the basic needs.  Household have to forgo some   basic needs, such as opting for unhealthy food options or staying homeless.  Finally, the proportion of income required for rent, and   to purchase healthy food were graphed in figure 6 and 7 respectively.
+
+```{r}
+#| label: fig_6
+#| fig-cap: percent_income_requiredforhealthfood
+#| echo: false
+ggplot(data, aes(fill=category, percent_income_requiredforhealthfood, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+
+#| label: fig_7
+#| fig-cap: percent_income_rent
+#| echo: false
+ggplot(data, aes(fill=category, percent_income_rent, x=scenario)) + 
+  geom_bar(position="dodge", stat="identity", ) +
+  scale_fill_grey(start = 0.25, end = 0.75)
+```
+
+Scenario 1,2,4,5, and 8 required more than 30% of their income to purchase health food as shown in figure 6. From figure 7, notice that   the proportion of income required to pay rent for scenario 1,4,5,6 and 7 is more than 1, implying that these households cannot afford a good housing. Then again, all the scenarios including scenario 3(median income earners) require more than 30% (0.3) of their income to pay rent.
+
+\newpage
+
+# References
+
+Farhan, B. Y. (2023). Canada's leadership and housing affordability: Evidence from the Canadian real estate market. Journal of Urban Management.
+
+Force, O. H. A. T. (2022). Report of the Ontario Housing Affordability Task Force. Government of Ontario.
+
+Woodhall-Melnik, J., Dunn, J. R., Dweik, I., Monette, C., Nombro, E., Pappas, J., ... & Stewart, C. (2022). NB housing study protocol: investigating the relationship between subsidized housing, mental health, physical health and healthcare use in New Brunswick, Canada. BMC Public Health, 22(1), 2448.
+
+Ramage, K., Bell, M., Zaretsky, L., Lee, L., & Milaney, K. (2021). Is the Right to Housing Being Realized in Canada? Learning from the Experiences of Tenants in Affordable Housing Units in a Large Canadian City. Societies, 11(2), 53.
+
+https://open.toronto.ca/dataset/cost-of-living-in-toronto-for-low-income-households
