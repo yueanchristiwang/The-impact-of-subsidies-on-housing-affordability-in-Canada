@@ -6,5 +6,6 @@ The repository is structured as follows:
 * `input/data` contains the data used in the analysis of the data together with the downloaded raw data
 * `outputs/data` contains the cleaned data, ready for analysis 
 * `outputs/paper` contains the files used to generate the paper including the final paper (pdf file), references (bibtex file), and QMD paper file which includes the scripts used to generate the paper
+* `scripts` contains the R scripts used to simulate, and download the data.
 ## LLM Usage 
 `Grammarly` was used to proofread the paper. 
